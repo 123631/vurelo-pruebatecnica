@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
-import { Portfolio } from '../portfolios/portfolio.entity';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Portafolio } from '../portafolio/portafolio.entity';
 
 @Entity()
 export class User {
@@ -18,6 +18,6 @@ export class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  @OneToMany(() => Portfolio, (portfolio) => portfolio.user)
-  portfolios: Portfolio[];
+  @OneToMany(() => Portafolio, (portafolio) => portafolio.user)
+  portafolio: Portafolio[];
 }
