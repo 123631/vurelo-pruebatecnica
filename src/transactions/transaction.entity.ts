@@ -1,13 +1,5 @@
-import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    ManyToOne,
-    PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 import { Portafolio } from '../portafolios/portafolio.entity';
-
-export type TransactionType = 'deposit' | 'withdraw';
 
 @Entity()
 export class Transaction {
@@ -20,11 +12,11 @@ export class Transaction {
   @Column('decimal')
   amount: number;
 
-  @Column({ type: 'decimal' })
+  @Column('decimal')
   usdValue: number;
 
   @Column()
-  type: TransactionType;
+  type: 'deposit' | 'withdraw';
 
   @ManyToOne(() => Portafolio, (portafolio) => portafolio.transactions, { onDelete: 'CASCADE' })
   portafolio: Portafolio;

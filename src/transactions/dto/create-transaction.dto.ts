@@ -2,7 +2,7 @@ import { IsNotEmpty, IsNumber, IsUUID, IsIn } from 'class-validator';
 
 export class CreateTransactionDto {
   @IsUUID()
-  portfolioId: string;
+  portafolioId: string;
 
   @IsNotEmpty()
   asset: string;

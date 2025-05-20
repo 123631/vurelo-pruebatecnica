@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -16,7 +16,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   find(@Param('id') id: string, @GetUser('id') userId: string) {
-    if (id !== userId) throw new Error('Unauthorized');
+    if (id !== userId) throw new UnauthorizedException('No tienes acceso a este recurso');
     return this.service.findById(id);
   }
 }

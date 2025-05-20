@@ -1,9 +1,8 @@
 import {
-    WebSocketGateway,
-    WebSocketServer,
+  WebSocketGateway,
+  WebSocketServer,
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
-import { Transaction } from '../transactions/transaction.entity';
 
 @WebSocketGateway({
   cors: {
@@ -13,15 +12,25 @@ import { Transaction } from '../transactions/transaction.entity';
 export class WebsocketGateway {
   @WebSocketServer()
   server: Server;
+  
 
-  emitTransaction(transaction: Transaction) {
+  emitTransaction(tx: any) {
+    if (!tx?.portafolio?.id) {
+      console.warn('❗ No se pudo emitir: portafolio.id está undefined');
+      return;
+    }
+
     this.server.emit('transaction_created', {
-      portfolioId: transaction.portafolio.id,
-      asset: transaction.asset,
-      amount: transaction.amount,
-      type: transaction.type,
-      usdValue: transaction.usdValue,
-      createdAt: transaction.createdAt,
+      portafolioId: tx.portafolio.id,
+      asset: tx.asset,
+      amount: tx.amount,
+      type: tx.type,
+      usdValue: tx.usdValue,
+      createdAt: tx.createdAt,
     });
   }
+  
+
 }
+
+

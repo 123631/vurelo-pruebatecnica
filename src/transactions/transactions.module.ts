@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Portafolio } from '../portafolio/portafolio.entity';
+import { Portafolio } from '../portafolios/portafolio.entity';
 import { WebsocketModule } from '../websocket/websocket.module';
 import { Transaction } from './transaction.entity';
-import { TransactionsController } from './transactions.controller';
-import { TransactionsService } from './transactions.service';
+import { TransactionsController } from './transaction.controller';
+import { TransactionsService } from './transaction.service';
 
 @Module({
   imports: [

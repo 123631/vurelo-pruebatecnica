@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PortfoliosController } from './portafolio.controller';
+import { PortafoliosController } from './portafolio.controller';
 import { Portafolio } from './portafolio.entity';
-import { PortfoliosService } from './portafolio.service';
+import { PortafoliosService } from './portafolio.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Portafolio])],
-  providers: [PortfoliosService],
-  controllers: [PortfoliosController],
-  exports: [PortfoliosService],
+  providers: [PortafoliosService],
+  controllers: [PortafoliosController],
+  exports: [PortafoliosService],
 })
-export class PortfoliosModule {}
+export class PortafoliosModule {}
