@@ -14,19 +14,19 @@ export class WebsocketGateway {
   server: Server;
   
 
-  emitTransaction(tx: any) {
-    if (!tx?.portafolio?.id) {
+  emitTransaction(transaction: any) {
+    if (!transaction?.portafolio?.id) {
       console.warn('❗ No se pudo emitir: portafolio.id está undefined');
       return;
     }
 
     this.server.emit('transaction_created', {
-      portafolioId: tx.portafolio.id,
-      asset: tx.asset,
-      amount: tx.amount,
-      type: tx.type,
-      usdValue: tx.usdValue,
-      createdAt: tx.createdAt,
+      portafolioId: transaction.portafolio.id,
+      asset: transaction.asset,
+      amount: transaction.amount,
+      type: transaction.type,
+      usdValue: transaction.usdValue,
+      createdAt: transaction.createdAt,
     });
   }
   

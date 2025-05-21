@@ -13,7 +13,7 @@ export class Portafolio {
   @ManyToOne(() => User, (user) => user.portafolio, { onDelete: 'CASCADE' })
   user: User;
 
-  @OneToMany(() => Transaction, (tx) => tx.portafolio)
+  @OneToMany(() => Transaction, (transaction) => transaction.portafolio)
   transactions: Transaction[];
 
   @CreateDateColumn()

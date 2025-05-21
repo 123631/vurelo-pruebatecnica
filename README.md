@@ -97,3 +97,8 @@ Guarda el token que recibes
 En Postman o Swagger, usa el header:
 
 Authorization: Bearer <tu_token_generado>
+
+
+Despliegue en railway:
+
+https://vurelo-pruebatecnica-production.up.railway.app/api

@@ -26,7 +26,7 @@ export class TransactionsService {
     const price = await this.getUSDPrice(dto.asset.toLowerCase());
     const usdValue = +dto.amount * price;
   
-    const tx = this.txRepo.create({
+    const transaction = this.txRepo.create({
       asset: dto.asset,
       amount: dto.amount,
       type: dto.type,
@@ -34,7 +34,7 @@ export class TransactionsService {
       portafolio, // asegúrate que este sea el campo correcto
     });
 
-    const savedTx = await this.txRepo.save(tx);
+    const savedTx = await this.txRepo.save(transaction);
 
     // 🔁 Recargar con relaciones
     const fullTx = await this.txRepo.findOne({
@@ -42,8 +42,8 @@ export class TransactionsService {
       relations: ['portafolio'],
     });
 
-    console.log('🔍 TX que se va a emitir:', tx);
-this.wsGateway.emitTransaction(tx);
+    console.log('🔍 Transacción que se va a emitir:', transaction);
+    this.wsGateway.emitTransaction(transaction);
 
     return savedTx;
     
